@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Security Code Challenge</title>
+  <title>보안 코드 챌린지</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -84,27 +84,27 @@
       color: red;
       text-align: center;
       margin-top: 10px;
-      display: none; /* Hide the message initially */
+      display: none; /* 초기에 메시지 숨김 */
     }
   </style>
 </head>
 <body>
-  <h1>Security Code Challenge</h1>
-  <p>To prove that you are human, please solve the following task.</p>
+  <h1>보안 코드 챌린지</h1>
+  <p>당신이 인간임을 증명하기 위해 다음 작업을 해결하세요.</p>
   <div id="captcha-container">
     <div id="captcha-text">{{ code }}</div>
   </div>
   <form id="captcha-form" method="POST" action="{{ url_for('captcha') }}">
     <div id="captcha-box">
-      <input id="captcha-input" type="text" placeholder="Enter the code above." name="code" required>
+      <input id="captcha-input" type="text" placeholder="위의 코드를 입력하세요." name="code" required>
       <input type="hidden" name="web" value="{{ request.args.get('web') }}">
       <br>
-      <button id="captcha-submit" type="submit">Submit</button>
+      <button id="captcha-submit" type="submit">제출</button>
     </div>
   </form>
   <p id="captcha-message"></p>
   <script>
-    // Check if the user input matches the code
+    // 사용자 입력이 코드와 일치하는지 확인
     var captchaForm = document.getElementById('captcha-form');
     var errorMessage = document.getElementById('captcha-message');
 
@@ -113,11 +113,11 @@
       var captchaInput = document.getElementById('captcha-input');
 
       if (captchaInput.value == "{{ code }}") {
-        // Submit the form
+        // 폼 제출
         captchaForm.submit();
       } else {
-        errorMessage.innerText = 'Sorry, the entered code is incorrect. Please try again.';
-        errorMessage.style.display = 'block'; // Show the error message
+        errorMessage.innerText = '죄송합니다. 입력한 코드가 올바르지 않습니다. 다시 시도해주세요.';
+        errorMessage.style.display = 'block'; // 에러 메시지 표시
         captchaInput.value = '';
       }
     });
